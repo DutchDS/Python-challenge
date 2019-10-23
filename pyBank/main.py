@@ -42,17 +42,17 @@ with open(csvpath, newline='') as cvsfile:
 j = 0 #to skip header row
 
 for row in my_array:
-    period_count = period_count + 1
-    total_profit = total_profit + int(row[1])
-    if j != 0:
-        change_profit = int(row[1]) - profit_prev_month
-        my_profit.append(change_profit)
+    period_count = period_count + 1 #Count the number of months
+    total_profit = total_profit + int(row[1]) #Keep adding to the overal total
+    if j == 1:
+        change_profit = int(row[1]) - profit_prev_month #Calculate Change to previous month, starting second month
+#        my_profit.append(change_profit) #Append to my_profit table
     profit_prev_month = int(row[1])
     change_profit_total = change_profit_total + change_profit
-    if change_profit < min_profit_change:
+    if change_profit < min_profit_change: #Set Greatest Decrease month and value
         min_profit_change = change_profit
         min_month = str(row[0])
-    if change_profit > max_profit_change:
+    if change_profit > max_profit_change: #Set Greatest Increase month and value
         max_profit_change = change_profit
         max_month = str(row[0])
     #print(my_profit[0])
@@ -67,11 +67,11 @@ avg_profit = change_profit_total/(period_count-1)
 #Print outcome to screen
 print("Financial Analysis")
 print("-------------------------------------------------")
-print(f"Total Months: {period_count}")
-print(f"Total: {total_profit}")
-print(f"Total Change: {change_profit_total}")
-print(f"Average Change: {avg_profit}")
-print(f"Greatest Increase in Profits: {max_month} (${max_profit_change})")
-print(f"Greatest Decrease in Profits: {min_month} (${min_profit_change})")
+print(f"Total Months    : {period_count}")
+print(f"Total           : ${total_profit}")
+#print(f"Total Change   : ${change_profit_total}")
+print(f"Average Change  : ${avg_profit:.2f}")
+print(f"Greatest Increase in Profits: {max_month}  (${max_profit_change})")
+print(f"Greatest Decrease in Profits: {min_month}  (${min_profit_change})")
 
 #Write results into file
