@@ -6,6 +6,8 @@ change_profit = 0 #Sum of Vaue change for Month - Month-1
 avg_profit = 0 #Change / Months-1
 max_profit_change = 0 #Max of Change
 min_profit_change = 0 #Min of Change
+i = 0 #counter
+
 my_array = ["Month","Profit","Change"]
 
 #Read all records into an array
@@ -15,8 +17,14 @@ my_array = ["Month","Profit","Change"]
 #Months, Total change and Average Change
 #Append Average Change to new array
 
-#while i <= period_count:
+period_count = 10
+avg_profit = 5
 
+while i <= period_count:
+    avg_profit = avg_profit + 13
+    my_array.append(avg_profit)
+    print(my_array)
+    i = i + 1
 
 
 #Loop through my array and find greatest increase and decrease
