@@ -2,6 +2,8 @@
 import os
 import csv
 
+csvpath = os.path.join('..', 'Resources', 'election_data.csv')
+
 vote_counter = 0 #Counter for each vote
 total_votes = 0 #Sum of votes
 candidate_votes_cnt = 0 #Sum of votes per candidate
