@@ -11,7 +11,9 @@ change_profit_total = 0 #Needed for average
 profit_prev_month = 0 #Placeholder for previouw month value
 avg_profit = 0 #Change / Months-1
 max_profit_change = 0 #Max of Change
+max_month = "TBD"
 min_profit_change = 0 #Min of Change
+min_month = "TBD"
 i = 1  #counter
 
 my_array = []
@@ -24,11 +26,11 @@ with open(csvpath, newline='') as cvsfile:
 
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
-    print(csv_header)
+    #  print(csv_header)
 
     # Read each row of data after the header
     for row in csvreader:
-        print(row)
+        #print(row)
         my_array.append(row)
 #Read all records into an array
 
@@ -47,6 +49,12 @@ for row in my_array:
         my_profit.append(change_profit)
     profit_prev_month = int(row[1])
     change_profit_total = change_profit_total + change_profit
+    if change_profit < min_profit_change:
+        min_profit_change = change_profit
+        min_month = str(row[0])
+    if change_profit > max_profit_change:
+        max_profit_change = change_profit
+        max_month = str(row[0])
     #print(my_profit[0])
     j = 1
     i = i + 0
@@ -63,7 +71,7 @@ print(f"Total Months: {period_count}")
 print(f"Total: {total_profit}")
 print(f"Total Change: {change_profit_total}")
 print(f"Average Change: {avg_profit}")
-print(f"Greatest Increase in Profits: {max_profit_change}")
-print(f"Greatest Decrease in Profits: {min_profit_change}")
+print(f"Greatest Increase in Profits: {max_month} (${max_profit_change})")
+print(f"Greatest Decrease in Profits: {min_month} (${min_profit_change})")
 
 #Write results into file
