@@ -14,7 +14,6 @@ max_profit_change = 0 #Max of Change
 max_month = "TBD"
 min_profit_change = 0 #Min of Change
 min_month = "TBD"
-i = 1  #counter
 
 my_array = []
 my_profit = []
@@ -39,6 +38,7 @@ with open(csvpath, newline='') as cvsfile:
 #Months, Total change and Average Change
 #Append Average Change to new array
 
+i = 0  #counter
 j = 0 #to skip header row
 
 for row in my_array:
@@ -57,12 +57,14 @@ for row in my_array:
         max_month = str(row[0])
     #print(my_profit[0])
     j = 1
-    i = i + 0
+    my_array[i].append(change_profit)
+    i = i + 1
 
 avg_profit = change_profit_total/(period_count-1)
 #Loop through my array and find greatest increase and decrease
 
-
+for a in my_array:
+    print(my_array.index(a),a)
 
 #Print outcome to screen
 print("Financial Analysis")
