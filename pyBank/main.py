@@ -16,7 +16,6 @@ min_profit_change = 0 #Min of Change
 min_month = "TBD"
 
 my_array = []
-my_profit = []
 
 with open(csvpath, newline='') as cvsfile:
 
@@ -28,11 +27,9 @@ with open(csvpath, newline='') as cvsfile:
     #  print(csv_header)
 
     # Read each row of data after the header
+    # Read all records into an array
     for row in csvreader:
-        #print(row)
         my_array.append(row)
-#Read all records into an array
-
 
 #Loop through the array and update Variables
 #Months, Total change and Average Change
@@ -46,7 +43,6 @@ for row in my_array:
     total_profit = total_profit + int(row[1]) #Keep adding to the overal total
     if j == 1:
         change_profit = int(row[1]) - profit_prev_month #Calculate Change to previous month, starting second month
-#        my_profit.append(change_profit) #Append to my_profit table
     profit_prev_month = int(row[1])
     change_profit_total = change_profit_total + change_profit
     if change_profit < min_profit_change: #Set Greatest Decrease month and value
@@ -60,18 +56,18 @@ for row in my_array:
     my_array[i].append(change_profit)
     i = i + 1
 
+#Determine Average Profit
 avg_profit = change_profit_total/(period_count-1)
-#Loop through my array and find greatest increase and decrease
 
-for a in my_array:
-    print(my_array.index(a),a)
+#I wanted to practice adding to my array
+#for a in my_array:
+#    print(my_array.index(a),a)
 
 #Print outcome to screen
 print("Financial Analysis")
 print("-------------------------------------------------")
 print(f"Total Months    : {period_count}")
 print(f"Total           : ${total_profit}")
-#print(f"Total Change   : ${change_profit_total}")
 print(f"Average Change  : ${avg_profit:.2f}")
 print(f"Greatest Increase in Profits: {max_month}  (${max_profit_change})")
 print(f"Greatest Decrease in Profits: {min_month}  (${min_profit_change})")
