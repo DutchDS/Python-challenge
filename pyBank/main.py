@@ -76,7 +76,7 @@ print(f"Greatest Decrease in Profits: {min_month}  (${min_profit_change})")
 
 with open(pyBank_out_path, 'w', newline='') as csvfile:
 
-    # Initialize csv.writer
+ #Print outcome to flatfile
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(["Financial Analysis"])
     csvwriter.writerow(["-------------------------------------------------"])
