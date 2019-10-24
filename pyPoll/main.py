@@ -2,7 +2,7 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'election_data.csv')
+csvpath = os.path.join('..','Resources', 'election_data.csv')
 
 vote_counter = 0 #Counter for each vote
 total_votes = 0 #Sum of votes
@@ -10,7 +10,8 @@ candidate_votes_cnt = 0 #Sum of votes per candidate
 candidate_votes_pct = 0 #Percentage of votes per candidate
 my_cvs_array = []
 my_candidates = []
-votes_summary_table = []
+my_voter_results = [0,0,0,0]
+#votes_summary_table = []
 winner = "TBD"
 
 #Read all records from csv into imported_csv_table
@@ -44,11 +45,26 @@ print(my_candidates)
 #And determine 'winner'
 i = 0
 
-for candidate in my_candidates:
-    for row in my_cvs_array:
-        if row[2] == str("Khan"):
-            vote_counter = vote_counter + 1
-    print(f"Received {vote_counter} votes")
+# for candidate in my_candidates:
+#     for row in my_cvs_array:
+#         if row[2] == str("Khan"):
+#             vote_counter = vote_counter + 1
+
+#     print(f"{candidate} Received {vote_counter} votes")
+
+for row in my_cvs_array:
+    if row[2] == my_candidates[0]:
+        choice_index = 0
+        my_voter_results[choice_index] += 1
+    if row[2] == my_candidates[1]:
+        choice_index = 1
+        my_voter_results[choice_index] += 1    
+    if row[2] == my_candidates[2]:
+        choice_index = 2
+        my_voter_results[choice_index] += 1    
+    if row[2] == my_candidates[3]:
+        choice_index = 3
+        my_voter_results[choice_index] += 1
 
 
 #Print outcome to screen
@@ -59,7 +75,9 @@ print(f"Total Votes: {total_votes}")
 print("-------------------------------------------------")
 #Loop through my_array for votes per candicate
             #Print Column Headers
-print(votes_summary_table)
+#print(votes_summary_table)
+for i in range(0,4):
+    print(f"Candidate {my_candidates[i]} received {my_voter_results[i]} votes" )
 print("-------------------------------------------------")
 print(f"Winner: {winner}")
 print("-------------------------------------------------")
