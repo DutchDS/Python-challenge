@@ -2,7 +2,9 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
+csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
+pyBank_out_path = os.path.join('..', 'Output', 'pyBank_out_file.csv')
+
 
 period_count = 0 #Counter for Months
 total_profit = 0 #Sum of Value over all months
@@ -72,4 +74,14 @@ print(f"Average Change  : ${avg_profit:.2f}")
 print(f"Greatest Increase in Profits: {max_month}  (${max_profit_change})")
 print(f"Greatest Decrease in Profits: {min_month}  (${min_profit_change})")
 
-#Write results into file
+with open(pyBank_out_path, 'w', newline='') as csvfile:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(["Financial Analysis"])
+    csvwriter.writerow(["-------------------------------------------------"])
+    csvwriter.writerow([f"Total Months    : {period_count}"])
+    csvwriter.writerow([f"Total           : ${total_profit}"])
+    csvwriter.writerow([f"Average Change  : ${avg_profit:.2f}"])
+    csvwriter.writerow([f"Greatest Increase in Profits: {max_month} ($  {max_profit_change})"])
+    csvwriter.writerow([f"Greatest Decrease in Profits: {min_month} ($  {min_profit_change})"])
