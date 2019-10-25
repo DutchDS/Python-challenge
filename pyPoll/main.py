@@ -5,10 +5,7 @@ import csv
 csvpath = os.path.join('..','Resources', 'election_data.csv')
 pyPoll_out_path = os.path.join('..','Output', 'pyPoll_out_file.csv')
 
-vote_counter = 0 #Counter for each vote
 total_votes = 0 #Sum of votes
-candidate_votes_cnt = 0 #Sum of votes per candidate
-candidate_votes_pct = 0 #Percentage of votes per candidate
 my_cvs_array = []
 my_candidates = []
 my_voter_results = [0,0,0,0]
@@ -26,18 +23,14 @@ with open(csvpath, newline='') as cvsfile:
     for row in csvreader:
         my_cvs_array.append(row)
 
-#Loop through the array and update Variables
-#Per candidate, summarize the number of votes
-#Append results to votes_summary_table
+#Loop through the array to determine unique (number of) candidates and total number of votes
 i = 0
 for row in my_cvs_array:
     total_votes = total_votes + 1
     if not row[2] in my_candidates:
         my_candidates.append(row[2])
-        #my_candidates.index(i).append(row[2])
-print(my_candidates)
 
-#Determine number of votes
+#Per candidate, summarize number of votes
 i = 0
 my_length = len(my_candidates)
 
@@ -68,7 +61,6 @@ print(f"Winner: {winner}")
 print("*************************************************")
 
 #Write results into file
-
 with open(pyPoll_out_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(["*************************************************"])

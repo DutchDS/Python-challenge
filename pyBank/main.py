@@ -66,22 +66,25 @@ avg_profit = change_profit_total/(period_count-1)
 #    print(my_array.index(a),a)
 
 #Print outcome to screen
+print("***************************************************")
 print("Financial Analysis")
-print("-------------------------------------------------")
+print("---------------------------------------------------")
 print(f"Total Months    : {period_count}")
 print(f"Total           : ${total_profit}")
 print(f"Average Change  : ${avg_profit:.2f}")
 print(f"Greatest Increase in Profits: {max_month}  (${max_profit_change})")
 print(f"Greatest Decrease in Profits: {min_month}  (${min_profit_change})")
-
-with open(pyBank_out_path, 'w', newline='') as csvfile:
+print("***************************************************")
 
  #Print outcome to flatfile
+with open(pyBank_out_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(["***************************************************"])
     csvwriter.writerow(["Financial Analysis"])
-    csvwriter.writerow(["-------------------------------------------------"])
+    csvwriter.writerow(["---------------------------------------------------"])
     csvwriter.writerow([f"Total Months    : {period_count}"])
     csvwriter.writerow([f"Total           : ${total_profit}"])
     csvwriter.writerow([f"Average Change  : ${avg_profit:.2f}"])
     csvwriter.writerow([f"Greatest Increase in Profits: {max_month} ($  {max_profit_change})"])
     csvwriter.writerow([f"Greatest Decrease in Profits: {min_month} ($  {min_profit_change})"])
+    csvwriter.writerow(["***************************************************"])
