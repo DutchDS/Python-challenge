@@ -1,7 +1,7 @@
 #Import modules
 import os
 import csv
-#import us_state_abbrev
+#import us_states
 
 us_state_abbrev = {
     'Alabama': 'AL',
@@ -95,6 +95,7 @@ with open(employee_data_path, newline="") as csvfile:
         mySSNreplace = ('***-**-' + mySSNnew)
         mySSN.append(mySSNreplace)
         #Finally lookup the abbreviated state
+        #from us_states import us_state_abbrev as ussa
         myStateLookup = (us_state_abbrev[row[4]])
         myState.append(myStateLookup)
 
