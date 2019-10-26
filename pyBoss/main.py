@@ -1,60 +1,7 @@
 #Import modules
 import os
 import csv
-#import us_states
-
-us_state_abbrev = {
-    'Alabama': 'AL',
-    'Alaska': 'AK',
-    'Arizona': 'AZ',
-    'Arkansas': 'AR',
-    'California': 'CA',
-    'Colorado': 'CO',
-    'Connecticut': 'CT',
-    'Delaware': 'DE',
-    'Florida': 'FL',
-    'Georgia': 'GA',
-    'Hawaii': 'HI',
-    'Idaho': 'ID',
-    'Illinois': 'IL',
-    'Indiana': 'IN',
-    'Iowa': 'IA',
-    'Kansas': 'KS',
-    'Kentucky': 'KY',
-    'Louisiana': 'LA',
-    'Maine': 'ME',
-    'Maryland': 'MD',
-    'Massachusetts': 'MA',
-    'Michigan': 'MI',
-    'Minnesota': 'MN',
-    'Mississippi': 'MS',
-    'Missouri': 'MO',
-    'Montana': 'MT',
-    'Nebraska': 'NE',
-    'Nevada': 'NV',
-    'New Hampshire': 'NH',
-    'New Jersey': 'NJ',
-    'New Mexico': 'NM',
-    'New York': 'NY',
-    'North Carolina': 'NC',
-    'North Dakota': 'ND',
-    'Ohio': 'OH',
-    'Oklahoma': 'OK',
-    'Oregon': 'OR',
-    'Pennsylvania': 'PA',
-    'Rhode Island': 'RI',
-    'South Carolina': 'SC',
-    'South Dakota': 'SD',
-    'Tennessee': 'TN',
-    'Texas': 'TX',
-    'Utah': 'UT',
-    'Vermont': 'VT',
-    'Virginia': 'VA',
-    'Washington': 'WA',
-    'West Virginia': 'WV',
-    'Wisconsin': 'WI',
-    'Wyoming': 'WY',
-}
+import us_states
 
 #Set Paths
 employee_data_path = os.path.join('..','Resources', 'employee_data.csv')
@@ -69,7 +16,9 @@ myLast = "TBD"
 myDOB = []
 mySSN = []
 myState = []
-myStateLookup = "XXX"
+myStateLookup = "XX"
+
+#Function to reformat DOB
 
 #Read employees data into cvsreader
 with open(employee_data_path, newline="") as csvfile:
@@ -95,8 +44,7 @@ with open(employee_data_path, newline="") as csvfile:
         mySSNreplace = ('***-**-' + mySSNnew)
         mySSN.append(mySSNreplace)
         #Finally lookup the abbreviated state
-        #from us_states import us_state_abbrev as ussa
-        myStateLookup = (us_state_abbrev[row[4]])
+        myStateLookup = (us_states.us_state_abbrev[row[4]])
         myState.append(myStateLookup)
 
 #Zip results into new table and write to new_employee_data.cvs
