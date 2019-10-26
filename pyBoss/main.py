@@ -19,7 +19,12 @@ myState = []
 myStateLookup = "XX"
 
 #Function to reformat DOB
-#After class today
+def new_DOB(myDOBin):
+    myDOBday = myDOBin[8:10]
+    myDOBmonth = myDOBin[5:7]
+    myDOByear = myDOBin[0:4]
+    myDOBnew = (myDOBmonth + "/" + myDOBday + "/" + myDOByear)
+    return myDOBnew
 
 #Read employees data into cvsreader
 with open(employee_data_path, newline="") as csvfile:
@@ -34,11 +39,8 @@ with open(employee_data_path, newline="") as csvfile:
         myLast = row[1].split()[1]
         myLastName.append(myLast)
         #Convert date format from YYYY-MM-DD to MM/DD/YYYY then add to list for DOB
-        myDOBcheck = row[2]
-        myDOByear = row[2][0:4]
-        myDOBmonth = row[2][5:7]
-        myDOBday = row[2][8:10]
-        myDOBnew = (myDOBmonth + "/" + myDOBday + "/" + myDOByear)
+        #Using the function new_DOB
+        myDOBnew = new_DOB(row[2])
         myDOB.append(myDOBnew)
         #Hide first 7 characters from SSN then add to list SSN
         mySSNnew = row[3][7:12]
@@ -53,9 +55,7 @@ cleaned_employee_data = zip(myEmp_ID,myFirstName,myLastName,myDOB,mySSN,myState)
 
 with open(output_data_file, "w", newline="") as datafile:
     writer = csv.writer(datafile)
-
     # Write the header row
     writer.writerow(['Emp ID','First Name','Last Name','DOB','SSN','State'])
-
     # Write in zipped rows
     writer.writerows(cleaned_employee_data)
