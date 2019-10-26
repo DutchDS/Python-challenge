@@ -19,6 +19,7 @@ myState = []
 myStateLookup = "XX"
 
 #Function to reformat DOB
+#After class today
 
 #Read employees data into cvsreader
 with open(employee_data_path, newline="") as csvfile:
